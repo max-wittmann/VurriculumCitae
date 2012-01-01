@@ -1,0 +1,51 @@
+@(title: String)(content: Html)(implicit flash: Flash, lang: Lang)
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@title</title>
+
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+    </head>
+
+    <body>
+      <div class="container">
+        <h1 href="@routes.Application.index()">
+          @Messages("application.name")
+        </h1>
+
+        <ul class="nav">
+          <li class="divider-vertical"></li>
+          <li class="active">
+            <a href="@routes.Sections.list()">
+              @Messages("sections.list.navigation")
+            </a>
+          </li>
+          <li class="active">
+            <a href="@routes.Sections.newSection()">
+              <i class="icon-plus icon-white"</i>
+                @Messages("sections.new.command")
+            </a>
+          </li>
+          <li class="divider-vertical"></li>
+        </ul>
+      </div>
+
+      <div class="container">
+        @if(flash.get("success").isDefined) {
+          <div class="alert alert-success">
+            @flash.get("success")
+          </div>
+        }
+
+        @if(flash.get("error").isDefined) {
+          <div class="alert alert-error">
+            @flash.get("error")
+          </div>
+        }
+
+        @content
+        @debug()
+      </div>
+    </body>
+</html>

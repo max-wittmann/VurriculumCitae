@@ -1,0 +1,20 @@
+@(section: Section)(implicit lang: Lang)
+
+
+
+@main(Messages("sections.details", section.name)) {
+  <h2>
+    @Messages("sections.details", section.name)
+  </h2>
+
+  <dl class="dl-horizontal">
+    <dt>@Messages("pos"):</dt>
+    <dd>@section.pos</dd>
+
+    <dt>@Messages("name"):</dt>
+    <dd>@section.name</dd>
+
+    <dt>@Messages("tooltip"):</dt>
+    <dd>@section.tooltip</dd>
+  </dl>
+}

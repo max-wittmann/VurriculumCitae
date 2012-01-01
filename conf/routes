@@ -1,0 +1,19 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Create new section
+POST /sections                      controllers.Sections.save
+
+GET /sections/new                   controllers.Sections.newSection
+
+# Home page
+GET     /                           controllers.Application.index
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+GET /sections                       controllers.Sections.list
+
+GET /sections/:pos                  controllers.Sections.show(pos: Int)
+

@@ -1,0 +1,11 @@
+@(sections: List[Section])(implicit lang: Lang)
+
+@main(Messages("application.name")) {
+
+  <dl class="sections">
+    @for(section <- sections) {
+      <dt>@section.name</dt>
+      <dd>@section.tooltip</dd>
+    }
+  </dl>
+}

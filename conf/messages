@@ -1,0 +1,8 @@
+sections.form = Section Details
+sections.new = (new)
+sections.new.command = New
+sections.new.submit = Add
+sections.new.success = Succesfully added section {0}.
+
+validation.errors = Please correct the errors in the form.
+validation.pos.duplicate = A section with this order id already exists.
