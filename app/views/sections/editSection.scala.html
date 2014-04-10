@@ -1,0 +1,19 @@
+@(sectionForm: Form[Section])(implicit flash: Flash, lang: Lang)
+@import helper._
+
+@main(Messages("sections.form")) {
+  <h2>@Messages("sections.form")</h2>
+
+  @helper.form(action = routes.Sections.save()) {
+    <fieldset>
+      <legend>
+        @Messages("sections.details", Messages("sections.new"))
+      </legend>
+      @helper.inputText(sectionForm("pos"))
+      @helper.inputText(sectionForm("name"))
+      @helper.textarea(sectionForm("tooltip"))
+    </fieldset>
+
+    <p><input type="submit" class="btn primary" value='@Messages("sections.new.submit")'></p>
+  }
+}

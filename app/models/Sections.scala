@@ -10,6 +10,10 @@ object Section {
     Section("Employment History", "Employment History", 2)
   )
 
+  def add(section: Section) {
+    sections = sections + section
+  }
+
   def findAll = sections.toList.sortBy(_.pos)
 
   def findByPosition(pos: Int) = sections.find(_.pos == pos)
