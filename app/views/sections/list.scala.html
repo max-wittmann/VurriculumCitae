@@ -1,11 +1,20 @@
-@(sections: List[Section])(implicit lang: Lang)
+@(sections: List[Section])(implicit flash: Flash, lang: Lang)
 
 @main(Messages("application.name")) {
 
   <dl class="sections">
     @for(section <- sections) {
-      <dt>@section.name</dt>
+      <dt>
+        <a href="@controllers.routes.Sections.show(section.pos)">
+          @section.name
+        </a>
+      </dt>
       <dd>@section.tooltip</dd>
     }
   </dl>
+
+  <p>
+    <a href="@controllers.routes.Sections.newSection()" class="btn">
+      <i class="icon-plus"></i> @Messages("sections.new.command")</a>
+  </p>
 }

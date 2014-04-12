@@ -27,29 +27,28 @@ object Sections extends Controller {
 
   def show(pos: Int) = Action { implicit request =>
 
-    // Section.findByPosition(pos).map { section =>
-    //   Ok(views.html.sections.details(section))
-    // }.getOrElse(NotFound)
-    NotFound
+    Section.findByPosition(pos).map { section =>
+      Ok(views.html.sections.details(section))
+    }.getOrElse(NotFound)
   }
 
   def save = Action { implicit request =>
     val newSectionForm = sectionForm.bindFromRequest()
 
     Redirect(routes.Sections.newSection())
-    // newSectionForm.fold(
-    //   hasErrors = { form =>
-    //     Redirect(routes.Sections.newSection()).
-    //       flashing(Flash(form.data) +
-    //         ("error" -> Messages("validation.errors")))
-    //   },
-    //   success = { newSection =>
-    //     Section.add(newSection)
-    //     val message = Messages("sections.new.success", newSection.name)
-    //     Redirect(routes.Sections.show(newSection.pos)).
-    //       flashing("success" -> message)
-    //   }
-    // )
+    newSectionForm.fold(
+      hasErrors = { form =>
+        Redirect(routes.Sections.newSection()).
+          flashing(Flash(form.data) +
+            ("error" -> Messages("validation.errors")))
+      },
+      success = { newSection =>
+        Section.add(newSection)
+        val message = Messages("sections.new.success", newSection.name)
+        Redirect(routes.Sections.show(newSection.pos)).
+          flashing("success" -> message)
+      }
+    )
   }
 
   def newSection = Action { implicit request =>
