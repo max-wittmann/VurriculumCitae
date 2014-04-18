@@ -8,11 +8,5 @@ import views.html.fieldtemplates.defaultBootstrapTemplateConstructor
 
 object MyHelpers
 {
-  // implicit val myFields = FieldConstructor(defaultBootstrapTemplate.scala.html)
-
-  // implicit val defaultBootstrapField = new FieldConstructor {
-  //   def apply(elts: FieldElements) = defaultBootstrapTemplateConstructor(elts)
-  // }
-
   implicit val defaultBootstrapField = FieldConstructor(defaultBootstrapTemplateConstructor.f)
 }

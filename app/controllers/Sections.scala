@@ -37,7 +37,6 @@ object Sections extends Controller {
     val newSectionForm = sectionForm.bindFromRequest()
 
     Redirect(routes.Sections.newSection())
-    // Logger.info("> > flash.data")
     newSectionForm.fold(
       hasErrors = { form =>
         {
