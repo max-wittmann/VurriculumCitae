@@ -8,5 +8,5 @@ import views.html.fieldtemplates.defaultBootstrapTemplateConstructor
 
 object MyHelpers
 {
-  implicit val defaultBootstrapField = FieldConstructor(defaultBootstrapTemplateConstructor.f)
+  // implicit val defaultBootstrapField = FieldConstructor(defaultBootstrapTemplateConstructor.f)
 }
