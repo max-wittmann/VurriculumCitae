@@ -1,5 +1,8 @@
 @(sectionForm: Form[Section])(implicit flash: Flash, lang: Lang)
-@import helper._
+@{/*import views.fieldtemplates.MyHelpers._ */}
+
+@import views.html.helper.FieldConstructor
+@implicitFieldConstructor = @{ FieldConstructor(views.html.fieldtemplates.defaultBootstrapTemplateConstructor.f) }
 
 @main(Messages("sections.form")) {
   <h2>@Messages("sections.form")</h2>
@@ -9,9 +12,15 @@
       <legend>
         @Messages("sections.details", Messages("sections.new"))
       </legend>
-      @helper.inputText(sectionForm("pos"))
-      @helper.inputText(sectionForm("name"))
-      @helper.textarea(sectionForm("tooltip"))
+
+
+<!-- helper.inputText(myForm("pos"))
+    helper.inputText(myForm("name"))
+    helper.textarea(myForm("tooltip")) -->
+
+    @{helper.inputText(sectionForm("pos"))}
+    @{/*helper.inputText(defaultBootstrapField("pos"))*/}
+
     </fieldset>
 
     <p><input type="submit" class="btn primary" value='@Messages("sections.new.submit")'></input></p>

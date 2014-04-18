@@ -1,8 +1,9 @@
 package controllers
 
+import play.api._
 import play.api.mvc.{Action, Controller}
 import play.api.data.Form
-import play.api.data.Forms.{mapping, number, nonEmptyText}
+import play.api.data.Forms.{mapping, number, text, nonEmptyText}
 import play.api.i18n.Messages
 
 import play.api.mvc.Flash
@@ -12,7 +13,7 @@ import models.Section
 object Sections extends Controller {
   private val sectionForm: Form[Section] = Form(
     mapping(
-        "name" -> nonEmptyText,
+        "name" -> text.verifying("validation.name.empty", {!_.isEmpty}),
         "tooltip" -> nonEmptyText,
         "pos" -> number.verifying("validation.pos.duplicate", Section.findByPosition(_).isEmpty)
     )(Section.apply)(Section.unapply)
@@ -36,11 +37,15 @@ object Sections extends Controller {
     val newSectionForm = sectionForm.bindFromRequest()
 
     Redirect(routes.Sections.newSection())
+    // Logger.info("> > flash.data")
     newSectionForm.fold(
       hasErrors = { form =>
-        Redirect(routes.Sections.newSection()).
-          flashing(Flash(form.data) +
-            ("error" -> Messages("validation.errors")))
+        {
+          Logger.info("Flash is: " + Flash(form.data))
+          Redirect(routes.Sections.newSection()).
+            flashing(Flash(form.data) +
+              ("error" -> Messages("validation.errors")))
+          }
       },
       success = { newSection =>
         Section.add(newSection)

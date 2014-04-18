@@ -10,3 +10,4 @@ sections.list.navigation = View Sections
 
 validation.errors = Please correct the errors in the form.
 validation.pos.duplicate = A section with this order id already exists.
+validation.name.empty = Please enter a name for the section

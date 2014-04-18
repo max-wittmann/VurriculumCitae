@@ -7,8 +7,7 @@ import play.api.mvc.Flash
 object Application extends Controller {
 
    def index = Action {
-      Logger.info("Hello World!")
-      Logger.error("Boo")
+      Logger.info("In Index")
       Redirect(routes.Sections.list())
   }
 
