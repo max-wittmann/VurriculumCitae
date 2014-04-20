@@ -1,0 +1,18 @@
+@(sections: List[Section])(implicit flash: Flash, lang: Lang, request: play.api.mvc.Request[Any], page: String)
+
+@main(Messages("application.name")) {
+
+  <div class="sections">
+    @for(section <- sections) {
+      <div class="section hover" id="@section.pos">
+        <!-- <div class="sectionName">@section.name</div> -->
+
+        <a class="sectionName" href="@controllers.routes.Sections.show(section.pos)">
+          @section.name
+        </a>
+        <div class="sectionBody">@Html(section.content)</div>
+        <div class="sectionTooltip tooltip">@section.tooltip</div>
+      </div>
+    }
+  </div>
+}

@@ -1,4 +1,4 @@
-@(sections: List[Section])(implicit flash: Flash, lang: Lang)
+@(sections: List[Section])(implicit flash: Flash, lang: Lang, request: play.api.mvc.Request[Any], page: String)
 
 @main(Messages("application.name")) {
 

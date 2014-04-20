@@ -1,4 +1,4 @@
-@(sectionForm: Form[Section])(implicit flash: Flash, lang: Lang)
+@(sectionForm: Form[Section])(implicit flash: Flash, lang: Lang, request: play.api.mvc.Request[Any], page: String)
 
 @import views.html.helper.FieldConstructor
 @implicitFieldConstructor = @{ FieldConstructor(views.html.fieldtemplates.defaultBootstrapTemplateConstructor.f) }
@@ -12,9 +12,28 @@
         @Messages("sections.details", Messages("sections.new"))
       </legend>
 
-      @{helper.inputText(sectionForm("pos"))}
-      @{helper.inputText(sectionForm("name"))}
-      @{helper.textarea(sectionForm("tooltip"))}
+      @println("Here errors are: " + sectionForm.errors)
+
+<!--       @{
+        //This actually works (but I don't need to do it because the 'has-error' class should actually be on a higher-level element than the input)
+        /*
+        var errorItems : Set[String] = Set()
+
+        for(error <- sectionForm.errors) {
+          errorItems += error.key
+        }
+
+        if(errorItems.contains("Position"))
+          {helper.inputText(sectionForm("Position"), 'class -> "form-control has-error")}
+        else
+          {helper.inputText(sectionForm("Position"), 'class -> "form-control")}
+          */
+      }
+ -->
+      @{helper.inputText(sectionForm("Position"), 'class -> "form-control")}
+      @{helper.inputText(sectionForm("Name"), 'class -> "form-control")}
+      @{helper.textarea(sectionForm("Tooltip"),  'class -> "form-control default-text-area")}
+      @{helper.textarea(sectionForm("Content"),  'class -> "form-control default-text-area")}
 
     </fieldset>
 

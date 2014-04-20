@@ -1,4 +1,4 @@
-@(section: Section)(implicit flash: Flash, lang: Lang)
+@(section: Section, returnCall: String)(implicit flash: Flash, lang: Lang, request: play.api.mvc.Request[Any], page: String)
 
 @main(Messages("sections.details", section.name)) {
   <h2>
@@ -15,4 +15,8 @@
     <dt>@Messages("tooltip"):</dt>
     <dd>@section.tooltip</dd>
   </dl>
+
+  <!-- <a href="@routes.Application.index">Return to Main</a> -->
+  <a href="@returnCall">Return to Main</a>
+
 }

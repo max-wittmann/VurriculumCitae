@@ -1,12 +1,14 @@
-@(title: String)(content: Html)(implicit flash: Flash, lang: Lang)
+@(title: String)(content: Html)(implicit flash: Flash, lang: Lang, request: play.api.mvc.Request[Any], page: String)
+
+@(println("title is " + title))
 
 <!DOCTYPE html>
 <html>
     <head>
         <title>@title</title>
 
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")"/>
         <link rel="stylesheet" type="text/css" media="screen" href='@routes.Assets.at("stylesheets/bootstrap.css")'>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")"/>
 
         <script type="text/javascript" src='@routes.Assets.at("javascripts/jquery-1.9.0.min.js")'></script>
         <script type="text/javascript" src='@routes.Assets.at("javascripts/bootstrap.min.js")'></script>

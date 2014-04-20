@@ -17,3 +17,6 @@ GET /sections                       controllers.Sections.list
 
 GET /sections/:pos                  controllers.Sections.show(pos: Int)
 
+GET /contact                        controllers.Application.contact
+
+GET /about                        controllers.Application.about
