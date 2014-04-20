@@ -33,29 +33,6 @@ object Sections extends Controller {
       .withSession("redirectTo" -> routes.Sections.list.url)
   }
 
-  // def show(pos: Int) : SimpleResult = Action { implicit request =>
-  //   show(pos, routes.Sections.list)
-  // }
-
-  // def show(pos: Int, returnCall: Call) = Action {
-  //   // println("Request class is " + request.getClass)
-  //   implicit request =>
-  //     Section.findByPosition(pos).map { section =>
-  //       Ok(views.html.sections.details(section, returnCall))
-  //     }.getOrElse(NotFound)
-  // }
-
-  /*def show(pos: Int) = Action {
-    // println("Request class is " + request.getClass)
-    implicit request =>
-      Section.findByPosition(pos).map {
-        section =>
-        // Ok(views.html.sections.details(section, returnCall))
-        // Ok(views.html.sections.details(section, routes.Application.index))
-        Ok(views.html.sections.details(section, routes.Application.index))
-      }.getOrElse(NotFound)
-  }*/
-
   def show(pos: Int) = Action {
     implicit request =>
       implicit val page = routes.Sections.show(pos).url
@@ -70,33 +47,6 @@ object Sections extends Controller {
       }.getOrElse(NotFound)
   }
 
-
-// session.get("connected").map { user =>
-//     Ok("Hello " + user)
-//   }.getOrElse {
-//     Unauthaurized("Oops, you are not connected")
-//   }
-
-/*
-  def show2(pos: Int) = Action {
-    // println("Request class is " + request.getClass)
-    implicit request =>
-      Section.findByPosition(pos).map { section =>
-        // Ok(views.html.sections.details(section, returnCall))
-        Ok(views.html.sections.details(section, routes.Application.index))
-      }.getOrElse(NotFound)
-  }
-
-  def show2 = Action {
-    // println("Request class is " + request.getClass)
-    implicit request =>
-      Section.findByPosition(1).map { section =>
-        // Ok(views.html.sections.details(section, returnCall))
-        // Ok(views.html.sections.details(section, returnCall))
-        Ok(views.html.sections.details(section, routes.Application.index))
-      }.getOrElse(NotFound)
-  }
-*/
   def save = Action { implicit request =>
     implicit val page = routes.Sections.save.url
 
@@ -118,8 +68,6 @@ object Sections extends Controller {
         Section.add(newSection)
         val message = Messages("sections.new.success", newSection.name)
         Redirect(routes.Sections.show(newSection.pos))
-        // show2(newSection.pos)
-        // Redirect(show2(newSection.pos)).
           .flashing("success" -> message)
           .withSession("redirectTo" -> routes.Application.index.url)
       }

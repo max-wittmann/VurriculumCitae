@@ -12,14 +12,7 @@ object Application extends Controller {
     implicit request =>
       implicit val page = routes.Application.index.url
       Logger.info("In Index")
-      // Redirect(routes.Sections.list())
       val sections = Section.findAll
-      // Ok(views.html.sections.list(sections))
-      // implicit val page = "Main"
-      println(views.html.index(sections).getClass)
-      println(views.html.index.getClass)
-      // println(Application.index.getClass);
-      println(Ok(views.html.index(sections)))
 
       Ok(views.html.index(sections))
         .withSession("redirectTo" -> routes.Application.index.url)

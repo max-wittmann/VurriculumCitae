@@ -12,24 +12,6 @@
         @Messages("sections.details", Messages("sections.new"))
       </legend>
 
-      @println("Here errors are: " + sectionForm.errors)
-
-<!--       @{
-        //This actually works (but I don't need to do it because the 'has-error' class should actually be on a higher-level element than the input)
-        /*
-        var errorItems : Set[String] = Set()
-
-        for(error <- sectionForm.errors) {
-          errorItems += error.key
-        }
-
-        if(errorItems.contains("Position"))
-          {helper.inputText(sectionForm("Position"), 'class -> "form-control has-error")}
-        else
-          {helper.inputText(sectionForm("Position"), 'class -> "form-control")}
-          */
-      }
- -->
       @{helper.inputText(sectionForm("Position"), 'class -> "form-control")}
       @{helper.inputText(sectionForm("Name"), 'class -> "form-control")}
       @{helper.textarea(sectionForm("Tooltip"),  'class -> "form-control default-text-area")}
