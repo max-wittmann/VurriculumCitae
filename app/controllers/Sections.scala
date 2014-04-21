@@ -36,8 +36,21 @@ object Sections extends Controller {
   def show(pos: Int) = Action {
     implicit request =>
       implicit val page = routes.Sections.show(pos).url
-      val section = Section.findByPosition(pos)
+      val sections = Section.findByPosition(pos)
+
+      if(sections != List.empty) {
+        val section = sections.last
+          session.get("redirectTo").map {
+            redirectTo =>
+              Ok(views.html.sections.details(section, redirectTo))
+          }.getOrElse {
+            Ok(views.html.sections.details(section, routes.Application.index.url))
+          }
+      } else {
+        NotFound
+      }
       // println(section)
+      // NotFound
       // section.map {
       //   section =>
       //     session.get("redirectTo").map {
@@ -47,7 +60,6 @@ object Sections extends Controller {
       //       Ok(views.html.sections.details(section, routes.Application.index.url))
       //     }
       // }.getOrElse(NotFound)
-      NotFound
   }
 
   def save = Action { implicit request =>

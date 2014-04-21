@@ -54,7 +54,8 @@ object Section {
       val query = SQL("SELECT * FROM section WHERE id={id}")
         .on("id" -> pos)
       // val sections =
-      var result = query().map(row => Section(row[String]("name"), row[String]("body"), row[String]("tooltip"), row[Int]("id")))
+      var result = query().map(row => Section(row[String]("name"), row[String]("body"), row[String]("tooltip"), row[Int]("id"))).toList
+      println("Results")
       result.foreach(item =>
         print(result + ", ")
       )
