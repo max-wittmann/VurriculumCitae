@@ -14,16 +14,6 @@ object Application extends Controller {
 
   def index = Action {
     implicit request =>
-      DB.withConnection { implicit c =>
-        var result: Boolean = SQL("Select 1").execute()
-        println(result)
-
-        var result2 = SQL("SHOW TABLES IN playtest").apply()
-        println(result2)
-
-        //SHOW [FULL] TABLES [{FROM | IN} db_name]
-      }
-
       implicit val page = routes.Application.index.url
       Logger.info("In Index")
       val sections = Section.findAll

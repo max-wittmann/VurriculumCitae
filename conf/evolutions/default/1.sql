@@ -12,7 +12,7 @@ create table section (
   body text,
   tooltip text,
   PRIMARY KEY (id)
-)
+);
 
 -- create table section (
 --   id  bigint not null,

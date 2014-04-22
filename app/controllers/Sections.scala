@@ -49,17 +49,6 @@ object Sections extends Controller {
       } else {
         NotFound
       }
-      // println(section)
-      // NotFound
-      // section.map {
-      //   section =>
-      //     session.get("redirectTo").map {
-      //       redirectTo =>
-      //         Ok(views.html.sections.details(section, redirectTo))
-      //     }.getOrElse {
-      //       Ok(views.html.sections.details(section, routes.Application.index.url))
-      //     }
-      // }.getOrElse(NotFound)
   }
 
   def save = Action { implicit request =>
