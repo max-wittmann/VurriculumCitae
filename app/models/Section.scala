@@ -10,7 +10,7 @@ case class Section(
 object Section {
 
   def add(section: Section) {
-    println("Saving " + section + " with name " + section.name)
+    // println("Saving " + section + " with name " + section.name)
     DB.withConnection { implicit c =>
       val result: Boolean = SQL("INSERT INTO section (id, body, tooltip, name) VALUES ({id}, {body}, {tooltip}, {name})")
         .on("id" -> section.pos, "body" -> section.content, "tooltip" -> section.tooltip, "name" -> section.name)
@@ -23,11 +23,11 @@ object Section {
       val query = SQL("SELECT * FROM section")
       val sections = query().map(row => Section(row[String]("name"), row[String]("body"), row[String]("tooltip"), row[Int]("id")))
       val result = sections.toList.sortBy(_.pos)
-      result.foreach(item =>
-        print(result + ", ")
-      )
-      println()
-      List[Section]()
+      // result.foreach(item =>
+      //   print(result + ", ")
+      // )
+      // println()
+      // List[Section]()
       result
     }
   }

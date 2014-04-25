@@ -1,4 +1,7 @@
-@(sections: List[Section])(implicit flash: Flash, lang: Lang, request: play.api.mvc.Request[Any], page: String)
+@(sections: List[Section], asections: List[models.sectiontemplatemodels.ASection])(implicit flash: Flash, lang: Lang, request: play.api.mvc.Request[Any], page: String)
+
+@import models.sectiontemplatemodels._
+@import models.sectiontemplatemodels.ASection
 
 @main(Messages("application.name")) {
 
@@ -13,6 +16,13 @@
         <div class="sectionBody">@Html(section.content)</div>
         <div class="sectionTooltip tooltip">@section.tooltip</div>
       </div>
+    }
+  </div>
+
+  <div class="section">
+    @for(section <- asections) {
+      @println("Writing out template " + section.title)
+      @section.applyTemplate()
     }
   </div>
 }
