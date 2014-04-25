@@ -2,7 +2,17 @@ package models.sectiontemplatemodels
 
 import views.html.sectionTemplates._
 
-case class ListSection (_id: Integer, _pos: Integer, _title: String, _listItems : List[String]) extends ASection
+class ListItem (_listHeader: String, _listBody: String) {
+  def listHeader(): String = {
+    _listHeader
+  }
+
+  def listBody(): String = {
+    _listBody
+  }
+}
+
+case class ListSection (_id: Integer, _pos: Integer, _title: String, _listItems : List[ListItem]) extends ASection
 {
   //Overriden base stuff
   override def id(): Integer = {
@@ -22,7 +32,7 @@ case class ListSection (_id: Integer, _pos: Integer, _title: String, _listItems 
   }
 
   //Custom to this type
-  def listItems(): List[String] = {
+  def listItems(): List[ListItem] = {
     _listItems
   }
 }

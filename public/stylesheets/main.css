@@ -71,3 +71,17 @@
 .hover:hover .tooltip { /* display tooltip on hover */
     opacity:1;
 }
+
+.listSection .listItem {
+  margin-bottom: 1em;
+}
+
+/* List Section Stuff */
+.listSection .listHeader {
+  font-weight: bolder;
+  font-size: 120%;
+}
+
+.listSection .listBody {
+
+}

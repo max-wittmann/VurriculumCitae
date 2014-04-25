@@ -16,7 +16,7 @@ object ASection {
   add(TextSection(0, 0, "First", "Body"))
   add(TextSection(1, 1, "Second", "Body"))
   add(TextSection(2, 2, "Third", "Body"))
-  add(ListSection(3, 3, "Fourth", List("Eins", "Zwei", "Drei")))
+  add(ListSection(3, 3, "Fourth", List(new ListItem("Eins", "Blah blah blah"), new ListItem("Zwei", "Blah blah blah"), new ListItem("Drei", "Blah blah blah"))))
 
   def add(section: ASection) {
     sections ::= section

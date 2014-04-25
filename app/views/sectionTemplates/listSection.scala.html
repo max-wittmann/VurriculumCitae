@@ -5,7 +5,10 @@
   <p class="listSectionBody">
     <ul>
     @for(listItem <- section.listItems) {
-      <li>@listItem</li>
+      <li span class="listItem">
+        <div class="listHeader">@listItem.listHeader</div>
+        <div class="listBody">@listItem.listBody</div>
+      </li>
     }
     </ul>
   </p>
