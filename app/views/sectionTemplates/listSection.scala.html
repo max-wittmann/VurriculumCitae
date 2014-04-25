@@ -1,9 +1,12 @@
-<!--@{/*
-@(section: ListSection)(implicit flash: Flash, lang: Lang, request: play.api.mvc.Request[Any], page: String)
+@(section: models.sectiontemplatemodels.ListSection)
 
-@main(Messages("application.name")) {
-  <div class="listSection">
-  @text
-  </div>
-}
-@*/}-->
+<div class="listSection">
+  <h1 class="listSectionHeader">@section.title</h1>
+  <p class="listSectionBody">
+    <ul>
+    @for(listItem <- section.listItems) {
+      <li>@listItem</li>
+    }
+    </ul>
+  </p>
+</div>
