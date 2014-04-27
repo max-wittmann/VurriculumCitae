@@ -1,30 +1,11 @@
 # --- !Ups
-#set ignorecase true;
+INSERT INTO section (id, pos, sectionType, name) VALUES (1, 1, 'TextSection', 'Section A');
+INSERT INTO textSection(id, body) VALUES (1, "Hahahahahahahahah");
 
-create table textSection (
-  id int not null,
-  body TEXT,
-  PRIMARY KEY (id),
-  FOREIGN KEY (id) REFERENCES section(id)
-);
+INSERT INTO section (id, pos, sectionType, name) VALUES (2, 2, 'TextSection', 'Section B');
+INSERT INTO textSection(id, body) VALUES (2, "Hahahahahahahahah");
 
-create table listSection (
-  id int not null,
-  listPos int not null,
-  header TEXT,
-  body TEXT,
-  PRIMARY KEY(id, listPos),
-  FOREIGN KEY (id) REFERENCES section(id)
-);
-
--- create table section (
---   id  bigint not null,
---   name varchar(255) not null,
---   body text,
---   tooltip text,
---   constraint pk_section primary key (id)
--- );
+INSERT INTO section (id, pos, sectionType, name) VALUES (3, 3, 'TextSection', 'Section C');
+INSERT INTO textSection(id, body) VALUES (3, "Hahahahahahahahah");
 
 # --- !Downs
-drop table if exists textSection;
-drop table if exists listSection;

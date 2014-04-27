@@ -5,18 +5,6 @@
 
 @main(Messages("application.name")) {
 
-  <div class="sections">
-    @for(section <- sections) {
-      <div class="section hover" id="@section.pos">
-        <!-- <div class="sectionName">@section.name</div> -->
-
-        <a class="sectionName" href="@controllers.routes.Sections.show(section.pos)">
-          @section.name
-        </a>
-      </div>
-    }
-  </div>
-
   <div class="section">
     @for(section <- asections) {
       @println("Writing out template " + section.title)
