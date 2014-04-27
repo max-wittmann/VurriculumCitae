@@ -18,16 +18,37 @@ class ListItem (_listHeader: String, _listBody: String) {
 }
 
 object ListSectionDBHelper extends ASectionDBHelper [ListSection]  {
+// create table listSection (
+//   id int not null,
+//   listPos int not null,
+//   header TEXT,
+//   body TEXT,
+//   PRIMARY KEY(id, listPos),
+//   FOREIGN KEY (id) REFERENCES section(id)
+// );
+
   override def storeInDB(section: ListSection) {
-    // DB.withConnection { implicit c =>
-    //   val result: Boolean = SQL("INSERT INTO section (id, pos, body, tooltip, name) VALUES ({id}, {pos}, {body}, {tooltip}, {name})")
-    //     .on("id" -> section.id, "pos" -> section.pos, "body" -> section.content, "tooltip" -> section.tooltip, "name" -> section.name)
-    //     .execute()
-    // }
+    DB.withConnection { implicit c =>
+      var pos = 0
+      section.listItems.foreach{listItem =>
+        SQL("INSERT INTO listSection (id, listPos, header, body) VALUES ({id}, {listPos}, {header}, {body})")
+          .on("id" -> section.id, "listPos" -> pos, "header" -> listItem.listHeader, "body" -> listItem.listBody)
+          .execute()
+        pos += 1
+      }
+    }
   }
 
   override def readFromDB(section: Section) = {
-    ListSection(0, 0, "Boo", List())
+    val listItems : List[ListItem] = DB.withConnection { implicit c =>
+      val query = SQL("SELECT * FROM listSection WHERE (id = {id}) ORDER BY listPos")
+        .on("id" -> section.id)
+
+      val listItems : List[ListItem] = query().map(row => new ListItem(row[String]("header"), row[String]("body"))).toList
+      listItems
+    }
+
+    ListSection(section.id, section.pos, section.name, listItems)
   }
 }
 
@@ -57,15 +78,6 @@ case class ListSection (_id: Integer, _pos: Integer, _title: String, _listItems 
   override def storeInDB() {
     ListSectionDBHelper.storeInDB(this)
   }
-
-// create table listSection (
-//   id int not null,
-//   listPos int not null,
-//   header TEXT,
-//   body TEXT,
-//   PRIMARY KEY(id, listPos),
-//   FOREIGN KEY (id) REFERENCES section(id)
-// );
 
   //Custom to this type
   def listItems(): List[ListItem] = {
