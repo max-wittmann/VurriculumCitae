@@ -23,11 +23,7 @@ object Section {
       val query = SQL("SELECT * FROM section")
       val sections = query().map(row => Section(row[Int]("id"), row[String]("name"), row[String]("sectionType"), row[Int]("pos")))
       val result = sections.toList.sortBy(_.pos)
-      // result.foreach(item =>
-      //   print(result + ", ")
-      // )
-      // println()
-      // List[Section]()
+
       result
     }
   }

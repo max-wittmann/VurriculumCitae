@@ -18,14 +18,6 @@ class ListItem (_listHeader: String, _listBody: String) {
 }
 
 object ListSectionDBHelper extends ASectionDBHelper [ListSection]  {
-// create table listSection (
-//   id int not null,
-//   listPos int not null,
-//   header TEXT,
-//   body TEXT,
-//   PRIMARY KEY(id, listPos),
-//   FOREIGN KEY (id) REFERENCES section(id)
-// );
 
   override def storeInDB(section: ListSection) {
     DB.withConnection { implicit c =>

@@ -6,8 +6,8 @@
     <ul>
     @for(listItem <- section.listItems) {
       <li span class="listItem">
-        <div class="listHeader">@listItem.listHeader</div>
-        <div class="listBody">@listItem.listBody</div>
+        <div class="listHeader">@Html(listItem.listHeader)</div>
+        <div class="listBody">@Html(listItem.listBody)</div>
       </li>
     }
     </ul>

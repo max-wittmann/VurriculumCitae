@@ -16,8 +16,6 @@ object Sections extends Controller {
         "Id" -> number.verifying("validation.pos.duplicate", Section.findByPosition(_).isEmpty),
         "Name" -> text.verifying("validation.name.empty", {!_.isEmpty}),
         "SectionType" -> text,
-        // "Content" -> text,
-        // "Tooltip" -> nonEmptyText,
         "Position" -> number.verifying("validation.pos.duplicate", Section.findByPosition(_).isEmpty)
     )(Section.apply)(Section.unapply)
   )

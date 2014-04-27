@@ -8,12 +8,7 @@ import play.api.db.DB
 import play.api.Play.current
 
 object TextSectionDBHelper extends ASectionDBHelper [TextSection] {
-// create table textSection (
-//   id int not null,
-//   body TEXT,
-//   PRIMARY KEY (id),
-//   FOREIGN KEY (id) REFERENCES section(id)
-// );
+
   override def storeInDB(section: TextSection) {
     DB.withConnection { implicit c =>
       val result: Boolean = SQL("INSERT INTO textSection (id, body) VALUES ({id}, {body})")
@@ -28,16 +23,11 @@ object TextSectionDBHelper extends ASectionDBHelper [TextSection] {
       val sections = query().map(row =>
         TextSection(section.id, section.pos, section.name, row[String]("body"))
       )
-      // sections.toList match {
-      //   case Nil => Nil
-      //   case A
-      // }
       val sectionsList = sections.toList
       if(sectionsList.length > 0)
         sections.toList.head
       else
         TextSection(-1, -1, "Bad", "Bad")
-      // sections.toList.sortBy(_.pos)
     }
   }
 }

@@ -25,12 +25,6 @@ trait ASectionDBHelper [T] {
 
 object ASection {
   val typeToSection = Map("ListSection" -> ListSectionDBHelper, "TextSection" -> TextSectionDBHelper)
-  // var sections = List[ASection]()
-
-  // add(TextSection(0, 0, "First", "Body"))
-  // add(TextSection(1, 1, "Second", "Body"))
-  // add(TextSection(2, 2, "Third", "Body"))
-  // add(ListSection(3, 3, "Fourth", List(new ListItem("Eins", "Blah blah blah"), new ListItem("Zwei", "Blah blah blah"), new ListItem("Drei", "Blah blah blah"))))
 
   def add(section: ASection) {
     //Add basic section details to db
@@ -42,33 +36,12 @@ object ASection {
 
     //Add 'custom' section details to db
     section.storeInDB()
-
-    // typeToSection(section.type).storeInDB()
-
-    // sections ::= section
-    // println("Now sections is " + sections)
   }
-
-  // def findAll = {
-  //   sections
-  // }
-
-  // def findById(id: Int) = {
-  //   sections.filter(section => section.id == id)
-  // }
 
   def findAll : List [ASection] = {
     DB.withConnection { implicit c =>
       val query = SQL("SELECT * FROM section")
       val sections: Stream[Section] = query().map(row => Section(row[Int]("id"), row[String]("name"), row[String]("sectionType"), row[Int]("pos")))
-      // val result: List[Section] = sections.toList
-
-      // result.foreach(baseSection =>
-      //   println(baseSection))
-
-      // result.map(baseSection =>
-      //   generateSection(baseSection)
-      // )
 
       val result = sections.toList.sortBy(_.pos)
 
