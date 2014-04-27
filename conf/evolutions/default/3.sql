@@ -19,4 +19,9 @@ INSERT INTO listSection(id, listPos, header, body) VALUES (4, 0, "Header a", "Bl
 INSERT INTO listSection(id, listPos, header, body) VALUES (4, 1, "Header a", "Blah");
 INSERT INTO listSection(id, listPos, header, body) VALUES (4, 2, "Header a", "Blah");
 
+INSERT INTO section (id, pos, sectionType, name) VALUES (5, 5, 'CompoundSection', 'Compound');
+INSERT INTO compoundSection(parentId, sectionId, sectionPos) VALUES (5, 0, 0);
+INSERT INTO compoundSection(parentId, sectionId, sectionPos) VALUES (5, 1, 1);
+INSERT INTO compoundSection(parentId, sectionId, sectionPos) VALUES (5, 2, 2);
+
 # --- !Downs

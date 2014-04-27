@@ -24,7 +24,11 @@ trait ASectionDBHelper [T] {
 }
 
 object ASection {
-  val typeToSection = Map("ListSection" -> ListSectionDBHelper, "TextSection" -> TextSectionDBHelper)
+  val typeToSection = Map(
+    "ListSection" -> ListSectionDBHelper,
+    "TextSection" -> TextSectionDBHelper,
+    "CompoundSection" -> CompoundSectionDBHelper
+  )
 
   def add(section: ASection) {
     //Add basic section details to db
