@@ -1,0 +1,10 @@
+@(section: models.sectiontemplatemodels.CompoundSection)
+
+<div class="compoundSection">
+  <h1 class="compoundSectionHeader">@section.title</h1>
+  <p class="compoundSectionBody">
+    @for(subsection <- section.subsections) {
+      @subsection.applyTemplate()
+    }
+  </p>
+</div>

@@ -17,6 +17,16 @@ create table listSection (
   FOREIGN KEY (id) REFERENCES section(id)
 );
 
+create table compoundSection (
+  parentId int not null,
+  sectionId int not null,
+  sectionPos int not null,
+  PRIMARY KEY(parentId, sectionId),
+  FOREIGN KEY (parentId) REFERENCES section(id),
+  FOREIGN KEY (sectionId) REFERENCES section(id)
+);
+
 # --- !Downs
 drop table if exists textSection;
 drop table if exists listSection;
+drop table if exists compoundSection;

@@ -52,17 +52,46 @@ object ASection {
     }
   }
 
+  // def generateSectionFromId(id: Int): ASection = {
+  //   val base
+
+  //   val sectionType = baseSection.sectionType
+  //   typeToSection(sectionType).readFromDB(baseSection)
+  // }
+
   private def generateSection(baseSection: Section): ASection = {
     val sectionType = baseSection.sectionType
     typeToSection(sectionType).readFromDB(baseSection)
   }
 
-  def findById(pos: Int) = {
+  //Todo: Should return Option[ASection]
+  def findById(pos: Int) : ASection = {
     DB.withConnection { implicit c =>
       val query = SQL("SELECT * FROM section WHERE id={id}")
         .on("id" -> pos)
       val baseResult = query().map(row => Section(row[Int]("id"), row[String]("name"), row[String]("sectionType"), row[Int]("pos"))).toList
-      baseResult.map(baseSection => generateSection(baseSection))
+      val result = baseResult.map(baseSection => generateSection(baseSection))
+
+      //Todo: Replace this!
+      if(result.size == 1) {
+        result.head
+      }
+      else if(result.size == 0) {
+        throw new RuntimeException("Didn't find result!")
+      }
+      else {
+        throw new RuntimeException("Found more than one result!")
+      }
+
     }
   }
+
+  // def findById(pos: Int) = {
+  //   DB.withConnection { implicit c =>
+  //     val query = SQL("SELECT * FROM section WHERE id={id}")
+  //       .on("id" -> pos)
+  //     val baseResult = query().map(row => Section(row[Int]("id"), row[String]("name"), row[String]("sectionType"), row[Int]("pos"))).toList
+  //     baseResult.map(baseSection => generateSection(baseSection))
+  //   }
+  // }
 }
