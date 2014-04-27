@@ -13,9 +13,11 @@ import models.Section
 object Sections extends Controller {
   private val sectionForm: Form[Section] = Form(
     mapping(
+        "Id" -> number.verifying("validation.pos.duplicate", Section.findByPosition(_).isEmpty),
         "Name" -> text.verifying("validation.name.empty", {!_.isEmpty}),
-        "Content" -> text,
-        "Tooltip" -> nonEmptyText,
+        "SectionType" -> text,
+        // "Content" -> text,
+        // "Tooltip" -> nonEmptyText,
         "Position" -> number.verifying("validation.pos.duplicate", Section.findByPosition(_).isEmpty)
     )(Section.apply)(Section.unapply)
   )

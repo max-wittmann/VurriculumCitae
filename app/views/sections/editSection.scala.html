@@ -12,10 +12,10 @@
         @Messages("sections.details", Messages("sections.new"))
       </legend>
 
-      @{helper.inputText(sectionForm("Position"), 'class -> "form-control")}
+      @{helper.inputText(sectionForm("Id"), 'class -> "form-control")}
       @{helper.inputText(sectionForm("Name"), 'class -> "form-control")}
-      @{helper.textarea(sectionForm("Tooltip"),  'class -> "form-control default-text-area")}
-      @{helper.textarea(sectionForm("Content"),  'class -> "form-control default-text-area")}
+      @{helper.inputText(sectionForm("SectionType"), 'class -> "form-control")}
+      @{helper.inputText(sectionForm("Position"), 'class -> "form-control")}
 
     </fieldset>
 

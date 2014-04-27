@@ -5,15 +5,15 @@ import play.api.db.DB
 import play.api.Play.current
 
 case class Section(
-  name: String, content: String, tooltip: String, pos: Int)
+  id: Int, name: String, sectionType: String, pos: Int)
 
 object Section {
 
   def add(section: Section) {
     // println("Saving " + section + " with name " + section.name)
     DB.withConnection { implicit c =>
-      val result: Boolean = SQL("INSERT INTO section (id, body, tooltip, name) VALUES ({id}, {body}, {tooltip}, {name})")
-        .on("id" -> section.pos, "body" -> section.content, "tooltip" -> section.tooltip, "name" -> section.name)
+      val result: Boolean = SQL("INSERT INTO section (id, name, sectionType, pos) VALUES ({id}, {name}, {sectionType}, {pos})")
+        .on("id" -> section.id, "name" -> section.name, "sectionType" -> section.sectionType, "pos" -> section.pos)
         .execute()
     }
   }
@@ -21,7 +21,7 @@ object Section {
   def findAll = {
     DB.withConnection { implicit c =>
       val query = SQL("SELECT * FROM section")
-      val sections = query().map(row => Section(row[String]("name"), row[String]("body"), row[String]("tooltip"), row[Int]("id")))
+      val sections = query().map(row => Section(row[Int]("id"), row[String]("name"), row[String]("sectionType"), row[Int]("pos")))
       val result = sections.toList.sortBy(_.pos)
       // result.foreach(item =>
       //   print(result + ", ")
@@ -36,7 +36,7 @@ object Section {
     DB.withConnection { implicit c =>
       val query = SQL("SELECT * FROM section WHERE id={id}")
         .on("id" -> pos)
-      query().map(row => Section(row[String]("name"), row[String]("body"), row[String]("tooltip"), row[Int]("id"))).toList
+      query().map(row => Section(row[Int]("id"), row[String]("name"), row[String]("sectionType"), row[Int]("pos"))).toList
     }
   }
 }
